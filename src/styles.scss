@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'instagram_font';
+    src: url('./assets/fonts/fontspring-demo-blue_vinyl_regular_ps_ot-webfont.woff2') format('woff2'),
+         url('./assets/fonts/fontspring-demo-blue_vinyl_regular_ps_ot-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
