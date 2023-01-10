@@ -8,6 +8,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SideNavRespComponent } from './side-nav-resp/side-nav-resp.component';
 import { TopnavComponent } from './topnav/topnav.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { TopnavComponent } from './topnav/topnav.component';
     SideNavComponent,
     SideNavRespComponent,
     TopnavComponent,
+    LoginPageComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
