@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SideNavRespComponent } from './side-nav-resp/side-nav-resp.component';
+import { TopnavComponent } from './topnav/topnav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
+    SideNavRespComponent,
+    TopnavComponent,
   ],
   imports: [
     BrowserModule,
