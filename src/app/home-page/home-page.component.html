@@ -1,5 +1,10 @@
-<div class="content-wrapper">
+<div class="content-wrapper bg-[#121212]">
   <app-topnav class="md:hidden"></app-topnav>
   <app-side-nav class="hidden md:block"></app-side-nav>
   <app-side-nav-resp class="md:hidden"></app-side-nav-resp>
+  <div class="post-container md:ml-[80px] xl:ml-[250px] flex justify-center">
+    <div class="inner-container w-[90%] pt-[50px] pb-[70px] flex flex-col items-center gap-5 bg-[#121212]" >
+      <app-post-card *ngFor="let post of posts" [post]="post" ></app-post-card>
+    </div>
+  </div>
 </div>

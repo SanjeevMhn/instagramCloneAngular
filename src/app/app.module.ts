@@ -10,6 +10,10 @@ import { SideNavRespComponent } from './side-nav-resp/side-nav-resp.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { PostCardComponent } from './post-card/post-card.component';
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -19,11 +23,13 @@ import { HomePageComponent } from './home-page/home-page.component';
     TopnavComponent,
     LoginPageComponent,
     HomePageComponent,
+    PostCardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
