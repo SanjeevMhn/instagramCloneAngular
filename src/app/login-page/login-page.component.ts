@@ -29,13 +29,14 @@ export class LoginPageComponent implements OnInit {
       this.authService.login(val.email, val.password)
       .subscribe({
         next:(res) => {
-          console.log(res);
           localStorage.setItem('token', res.access_token);
           this.router.navigate(['/home']);
         },error:(err)=>{
           this.message = "Invalid email or password";
         }
       })
+    }else{
+      this.message = "Please provide email and password";
     }
   }
 

@@ -7,7 +7,7 @@
     </a>
     <ul class="nav-list">
         <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start">
+            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faHome" class="text-2xl"></fa-icon>
                 </span>
@@ -15,7 +15,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start">
+            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faMagnifyingGlass" class="text-2xl"></fa-icon>
                 </span> 
@@ -23,7 +23,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start">
+            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faCompass" class="text-2xl"></fa-icon> 
                 </span>
@@ -31,7 +31,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start">
+            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faClapperboard" class="text-2xl"></fa-icon>
                 </span>
@@ -39,14 +39,14 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start">
+            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faComment" class="text-2xl"></fa-icon>
                 </span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">Messages</span>
             </a></li>
         <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start">
+            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faHeart" class="text-2xl"></fa-icon>
                 </span>
@@ -54,7 +54,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start">
+            <a class="cursor-pointer nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]" (click)="toggleModal()">
                 <span class="icon-container">
                     <fa-icon [icon] = "faSquarePlus" class="text-2xl"></fa-icon>
                 </span>
@@ -62,17 +62,24 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start">
+            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="img-container w-[24px] h-[24px] rounded-full bg-slate-400 inline-block"></span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">Profile</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start">
+        <li class="nav-item relative">
+            <a class="cursor-pointer nav-link p-[12px] flex items-center justify-center xl:justify-start relative hover:bg-[rgb(18_18_18)] rounded-[100vh]" (click)="toggleOptions()">
                 <span class="icon-container">
                     <fa-icon [icon]="faBars" class="text-2xl"></fa-icon>
                 </span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">More</span>
+
+                <div class="dropdown-list absolute left-0 top-[-190px] rounded-md bg-[#262626] text-white w-full min-w-[225px] overflow-hidden" [ngClass]="showOptions ? 'block' : 'hidden'">
+                    <button class="dropdown-item p-[10px_15px] block hover:bg-[rgb(18_18_18)] w-full text-left">Settings</button>
+                    <button class="dropdown-item p-[10px_15px] block hover:bg-[rgb(18_18_18)] w-full text-left">Saved</button>
+                    <button class="dropdown-item p-[10px_15px] block hover:bg-[rgb(18_18_18)] w-full text-left">Switch Appearance</button>
+                    <button class="dropdown-item p-[10px_15px] block hover:bg-[rgb(18_18_18)] w-full text-left" (click)="logout()">Logout</button>
+                </div>
             </a>
         </li>
     </ul>

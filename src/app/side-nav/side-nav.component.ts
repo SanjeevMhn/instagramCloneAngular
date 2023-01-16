@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { faHome, faMagnifyingGlass, faCompass, faClapperboard, faComment, faHeart, faSquarePlus, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -20,10 +21,27 @@ export class SideNavComponent implements OnInit {
   faBars = faBars;
   faInstagram = faInstagram;
 
+  showOptions = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
+
+  @Input() showUploadModal: any;
+
+  @Output() toggleUploadModal: EventEmitter<any> = new EventEmitter();
+  toggleModal(){
+    this.toggleUploadModal.emit(this.showUploadModal = !this.showUploadModal);
+  }
+
+  logout(){
+    this.authService.logout();
+  }
+
+  toggleOptions(){
+    this.showOptions = !this.showOptions;
+  }
+
 
 }
