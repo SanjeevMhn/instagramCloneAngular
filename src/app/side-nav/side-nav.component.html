@@ -1,74 +1,74 @@
-<nav class="side-nav bg-black text-white fixed h-screen w-[80px] xl:w-[250px] top-0 left-0 p-[12px]">
+<nav class="side-nav bg-black text-white fixed w-full p-[8px_12px] bottom-0 md:h-screen md:w-[80px] xl:w-[250px] md:top-0 md:left-0 md:p-[12px]">
     <a href="#" class="desktop-brand hidden xl:block font-['instagram\_font'] text-[30px] p-[25px_15px] mb-[10px]">NotInstagram</a>
-    <a href="#" class="responsive-brand block xl:hidden p-[25px_15px] mb-[10px]">
+    <a href="#" class="responsive-brand hidden md:block xl:hidden p-[25px_15px] mb-[10px]">
         <span class="icon-container">
             <fa-icon [icon]="faInstagram" class="text-3xl"></fa-icon>
         </span>
     </a>
-    <ul class="nav-list">
-        <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
+    <ul class="nav-list flex items-center justify-between md:flex-col">
+        <li class="nav-item w-full">
+            <a href="#" class="nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faHome" class="text-2xl"></fa-icon>
                 </span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">Home</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
+        <li class="nav-item w-full hidden md:block">
+            <a href="#" class="nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faMagnifyingGlass" class="text-2xl"></fa-icon>
                 </span> 
                 <span class="label-text pl-[16px] hidden xl:inline-block">Search</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
+        <li class="nav-item w-full">
+            <a href="#" class="nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faCompass" class="text-2xl"></fa-icon> 
                 </span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">Explore</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
+        <li class="nav-item w-full">
+            <a href="#" class="nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faClapperboard" class="text-2xl"></fa-icon>
                 </span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">Reels</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
+        <li class="nav-item w-full">
+            <a href="#" class="nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faComment" class="text-2xl"></fa-icon>
                 </span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">Messages</span>
             </a></li>
-        <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
+        <li class="nav-item w-full hidden md:block">
+            <a href="#" class="nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="icon-container">
                     <fa-icon [icon] = "faHeart" class="text-2xl"></fa-icon>
                 </span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">Notifications</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="cursor-pointer nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]" (click)="toggleModal()">
+        <li class="nav-item w-full">
+            <a class="cursor-pointer nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]" (click)="toggleModal()">
                 <span class="icon-container">
                     <fa-icon [icon] = "faSquarePlus" class="text-2xl"></fa-icon>
                 </span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">Create</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link p-[12px] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
+        <li class="nav-item w-full">
+            <a href="#" class="nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
                 <span class="img-container w-[24px] h-[24px] rounded-full bg-slate-400 inline-block"></span>
                 <span class="label-text pl-[16px] hidden xl:inline-block">Profile</span>
             </a>
         </li>
-        <li class="nav-item relative">
-            <a class="cursor-pointer nav-link p-[12px] flex items-center justify-center xl:justify-start relative hover:bg-[rgb(18_18_18)] rounded-[100vh]" (click)="toggleOptions()">
+        <li class="nav-item w-full relative hidden md:block">
+            <a class="cursor-pointer nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start relative hover:bg-[rgb(18_18_18)] rounded-full md:rounded-[100vh]" (click)="toggleOptions()">
                 <span class="icon-container">
                     <fa-icon [icon]="faBars" class="text-2xl"></fa-icon>
                 </span>

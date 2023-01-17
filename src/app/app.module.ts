@@ -14,6 +14,7 @@ import { PostCardComponent } from './post-card/post-card.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginPageComponent,
     HomePageComponent,
     PostCardComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
