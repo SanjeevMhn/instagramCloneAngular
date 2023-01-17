@@ -25,6 +25,11 @@ export class AuthService {
     }
   }
 
+  getToken(){
+    const token = localStorage.getItem('token');
+    return token;
+  }
+
   logout(){
     let removeToken = localStorage.removeItem('token');
 

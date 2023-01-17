@@ -15,7 +15,8 @@
     <button class="close-btn fixed top-0 right-0 p-[20px_30px]" (click)="closeModal()">
       <fa-icon [icon]="faClose" class="text-white text-2xl"></fa-icon>
     </button>
-    <div class="add-media-container bg-[rgb(18_18_18)] w-[40%] min-h-[450px] rounded-xl flex flex-col items-center">
+    <form [formGroup]="form" class="add-media-container bg-[rgb(18_18_18)] w-[60%] min-h-[450px] rounded-xl flex flex-col items-center"
+      entype="multipart/form-data" type="post" (submit)="submitForm()">
       <div
         class="modal-header border border-gray-400 border-t-0 border-x-0 p-[20px] text-white text-center w-full text-xl">
         Create
@@ -26,22 +27,21 @@
             class="upload-file p-[5px_10px] text-white rounded-md bg-blue-500 text-center cursor-pointer text-[18px]">Select
             from
             device</label>
-          <input type="file" name="media" id="media" class="hidden" placeholder="Upload File"
+          <input formControlName="post_img" type="file" name="media" id="media" class="hidden" placeholder="Upload File"
             (change)="readUrl($event)">
         </div>
-        <div class="form-group mb-4 flex" *ngIf="imageSrc">
+        <div class="form-group mb-4 flex flex-col md:flex-row gap-5" *ngIf="imageSrc">
           <div class="img-container w-full max-h-[350px] mb-3">
             <img [src]="imageSrc || defaultImage" alt="Uploaded-image" class="w-full h-full object-contain">
           </div>
-          <textarea name="caption" id="caption" cols="30" rows="10" placeholder="Write a caption..."
+          <textarea formControlName="post_desc" name="caption" id="caption" cols="30" rows="10" placeholder="Write a caption..."
             class="bg-[rgb(18_18_18)] text-white w-full p-2"></textarea>
         </div>
         <div class="form-group mb-4 flex py-4" *ngIf="imageSrc">
           <button
-            class="p-[5px_10px] text-white rounded-md bg-blue-500 text-center cursor-pointer text-[18px]">Share</button>
+            class="p-[5px_10px] text-white rounded-md bg-blue-500 text-center cursor-pointer text-[18px]" type="submit">Share</button>
         </div>
       </div>
-
-    </div>
+    </form>
   </div>
 </div>
