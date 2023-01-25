@@ -4,7 +4,8 @@
             <img src="" alt="" class="w-full h-full object-cover">
         </div>
         <div class="user-name font-semibold pl-[10px]">{{post.name}}</div>
-        <div class="post-settings ml-auto">
+        <div class="post-settings ml-auto flex items-center">
+            <button class="follow-btn text-white bg-[#242424] p-[5px_12px] rounded-md">Follow</button>
             <div class="icon-container px-[10px]">
                 <fa-icon [icon]="faEllipsis" class="text-xl"></fa-icon>
             </div>
@@ -29,14 +30,14 @@
             </button>
         </div>
         <div class="post-likes-views-count px-[12px]">
-            30 likes
+            <!-- 30 likes -->
         </div>
         <div class="post-desc p-[10px_12px]">
             <span class="user-name font-semibold mr-3">{{post.name}}</span>
             <span class="post-desc-text">{{post.post_desc}}</span>
         </div>
         <div class="post-comments-count px-[12px] pb-[10px]">
-            View all 10 comments
+            <!-- View all 10 comments -->
         </div>
         <div class="post-add-comment border-t border-[rgb(38_38_38)] p-[10px_12px] flex items-center">
             <button class="icon-container">
