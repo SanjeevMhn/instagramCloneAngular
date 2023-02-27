@@ -23,10 +23,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   login(){
-    const val = this.loginForm.value;
+    let val = this.loginForm.value;
 
     if(val.email && val.password){
-      this.authService.login(val.email, val.password)
+      this.authService.login(val)
       .subscribe({
         next:(res) => {
           localStorage.setItem('token', res.access_token);

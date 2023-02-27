@@ -15,6 +15,9 @@ import { PostCardComponent } from './post-card/post-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MainlayoutComponent } from './layouts/mainlayout/mainlayout.component';
+import { LoginlayoutComponent } from './layouts/loginlayout/loginlayout.component';
+import { AddMediaModalComponent } from './add-media-modal/add-media-modal.component';
 
 
 @NgModule({
@@ -27,6 +30,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     HomePageComponent,
     PostCardComponent,
     UserProfileComponent,
+    MainlayoutComponent,
+    LoginlayoutComponent,
+    AddMediaModalComponent,
   ],
   imports: [
     BrowserModule,

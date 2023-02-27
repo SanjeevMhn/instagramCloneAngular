@@ -10,9 +10,9 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router:Router) { }
 
-  login(email:string,password:string):Observable<any>{
+  login(params:any):Observable<any>{
     
-    return this.http.post('http://127.0.0.1:8000/api/login',{email,password});
+    return this.http.post('http://127.0.0.1:8000/api/login',params);
 
   }
 
