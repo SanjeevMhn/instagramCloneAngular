@@ -14,9 +14,9 @@
             </div>
         </div>
     </div>
-    <div class="posts-grid flex justify-between flex-wrap">
+    <div class="posts-grid flex flex-wrap">
         <div class="post-outer-container flex-[0_0_calc(100%/3)] p-[2%]" *ngFor="let post of posts">
-            <div class="post-inner-container  h-full w-full flex items-center justify-center bg-white cursor-pointer">
+            <div class="post-inner-container h-full w-full flex items-center justify-center bg-white cursor-pointer">
                 <img src="http://127.0.0.1:8000/{{post.post_img}}" alt="" class="h-full object-contain w-full">
             </div>
         </div>
