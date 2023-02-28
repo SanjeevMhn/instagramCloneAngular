@@ -36,10 +36,11 @@ export class PostService {
 
     console.log(data);
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${auth_token}`
-    })
-    return this.httpClient.post(createPostUrl,formData,{headers: headers});
+    // const headers = new HttpHeaders({
+    //   'Authorization': `Bearer ${auth_token}`
+    // })
+    // return this.httpClient.post(createPostUrl,formData,{headers: headers});
+    return this.httpClient.post(createPostUrl,formData);
   }
 
 }
