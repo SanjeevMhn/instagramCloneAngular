@@ -1,5 +1,25 @@
 <!-- <app-layout> -->
-    <div class="">
-        <p>user-profile works!</p>
+<div class="flex flex-col items-center px-0 md:px-[8%]">
+    <div class="user-details flex mb-[30px] justify-start items-center w-full px-2 md:px-0">
+        <div class="profile-img flex-shrink rounded-full overflow-hidden w-[70px] h-[70px] md:w-[150px] md:h-[150px] flex items-center justify-center">
+            <img class="w-full h-full object-cover" src="http://127.0.0.1:8000/{{userProfilePic}}" alt="" *ngIf="userProfilePic; else defaultImg">
+            <!-- <img src="{{defaultImage}}" alt=""> -->
+            <ng-template #defaultImg>
+                <img class="w-full h-full object-cover" src="{{defaultImage}}" alt="">
+            </ng-template>
+        </div>
+        <div class="profile-content flex-grow ml-[30px]">
+            <div class="user-settings flex">
+                <span class="user-name text-white font-semibold text-xl">{{userName}}</span>
+            </div>
+        </div>
     </div>
+    <div class="posts-grid flex justify-between flex-wrap">
+        <div class="post-outer-container flex-[0_0_calc(100%/3)] p-[2%]" *ngFor="let post of posts">
+            <div class="post-inner-container  h-full w-full flex items-center justify-center bg-white cursor-pointer">
+                <img src="http://127.0.0.1:8000/{{post.post_img}}" alt="" class="h-full object-contain w-full">
+            </div>
+        </div>
+    </div>
+</div>
 <!-- </app-layout> -->
