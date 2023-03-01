@@ -51,6 +51,7 @@ export class LayoutComponent implements OnInit {
       .subscribe({
         next: (res) => {
           location.reload()
+          
           // this.readPosts();
         }, error: (err) => {
           console.log(err);

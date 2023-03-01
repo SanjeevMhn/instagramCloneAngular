@@ -1,0 +1,55 @@
+<div class="post-card-outer py-[10px]">
+    <div
+        class="post-card bg-black border border-[rgb(54_54_54)] rounded-md w-[calc(100vw-40px)] md:w-[470px] text-white">
+        <div class="post-header p-[10px] flex items-center">
+            <div class="img-container user-img w-[32px] h-[32px] rounded-full overflow-hidden bg-red">
+                <img src="" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="user-name font-semibold pl-[10px]">{{post.name}}</div>
+            <div class="post-settings ml-auto flex items-center">
+                <button class="follow-btn text-white bg-[#242424] p-[5px_12px] rounded-md">Follow</button>
+                <div class="icon-container px-[10px]">
+                    <fa-icon [icon]="faEllipsis" class="text-xl"></fa-icon>
+                </div>
+            </div>
+        </div>
+        <div
+            class="post-content min-h-[250px] max-h-[580px] w-full flex justify-end items-center bg-white overflow-hidden">
+            <img src="http://127.0.0.1:8000/{{post.post_img}}" alt="Post Media" class="w-full h-auto object-contain">
+        </div>
+        <div class="post-footer">
+            <div class="post-action-container flex items-center">
+                <button class="like p-[8px_12px] icon-container">
+                    <fa-icon [icon]="faHeart" class="text-xl"></fa-icon>
+                </button>
+                <button class="comment p-[8px_12px] icon-container">
+                    <fa-icon [icon]="faComment" class="text-xl"></fa-icon>
+                </button>
+                <button class="share p-[8px_12px] icon-container">
+                    <fa-icon [icon]="faPaperPlane" class="text-xl"></fa-icon>
+                </button>
+                <button class="save p-[8px_12px] icon-container ml-auto">
+                    <fa-icon [icon]="faBookmark" class="text-xl"></fa-icon>
+                </button>
+            </div>
+            <div class="post-likes-views-count px-[12px]">
+                <!-- 30 likes -->
+            </div>
+            <div class="post-desc p-[10px_12px]">
+                <span class="user-name font-semibold mr-3">{{post.name}}</span>
+                <span class="post-desc-text">{{post.post_desc}}</span>
+            </div>
+            <div class="post-comments-count px-[12px] pb-[10px]">
+                <!-- View all 10 comments -->
+            </div>
+            <div class="post-add-comment border-t border-[rgb(38_38_38)] p-[10px_12px] flex items-center">
+                <button class="icon-container">
+                    <fa-icon [icon]="faFaceSmile" class="text-2xl"></fa-icon>
+                </button>
+                <input type="text" name="comment" id="" class="ml-[10px] bg-black flex-grow"
+                    placeholder="Add a comment...">
+                <button class="text-blue-300 font-semibold pl-[8px]">Post</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,21 +7,16 @@ import { LayoutComponent } from './shared/layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { SideNavComponent } from 'src/app/side-nav/side-nav.component';
-import { TopnavComponent } from 'src/app/topnav/topnav.component';
-import { PostCardComponent } from 'src/app/post-card/post-card.component';
-
 import { HomePageComponent } from './home-page/home-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HomePageComponent,
-    SideNavComponent,
-    TopnavComponent,
-    PostCardComponent,
     UserProfileComponent,
   ],
   imports: [
@@ -30,6 +25,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    SharedModule,
   ]
 })
 export class HomeModule { }
