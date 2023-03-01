@@ -14,36 +14,12 @@ export class HomePageComponent implements OnInit {
 
   posts: any = [];
   faClose = faClose;
-  showUploadModal = false;
-  imageSrc: any = '';
-  imgFile: any = null;
-  defaultImage = '/assets/images/default_image.png';
-  public form!: FormGroup;
 
   constructor(private postService: PostService,private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.readPosts();
-    // this.form = this.fb.group({
-    //   post_img: [null],
-    //   post_desc: [null]
-    // })
   }
-
-  // readUrl(event: Event): void {
-    
-  //   let file = event.target as HTMLInputElement;
-
-
-  //   if (file.files && file.files[0]) {
-  //     this.imgFile = file.files[0];
-
-  //     const reader = new FileReader();
-  //     reader.onload = e => this.imageSrc = reader.result;
-
-  //     reader.readAsDataURL(this.imgFile);
-  //   }
-  // }
 
   readPosts(): void {
     this.postService.readAll()
@@ -57,30 +33,5 @@ export class HomePageComponent implements OnInit {
         }
       )
   }
-
-  // submitForm(){
-  //   console.log(this.imgFile);
-  //   let formData:any = new FormData();
-  //   formData.append('post_img',this.imgFile, this.imgFile.name)
-  //   formData.append('post_desc',this.form.get('post_desc')!.value)
-  //   this.postService.createPost(formData)
-  //   .subscribe({
-  //     next:(res)=>{
-  //       location.reload()
-  //       this.readPosts();
-  //     },error:(err)=>{
-  //       console.log(err);
-  //     }
-  //   })
-
-  // }
-
-  // getUploadModalState(evt: any) {
-  //   this.showUploadModal = evt
-  // }
-
-  // closeModal() {
-  //   this.showUploadModal = false;
-  // }
 
 }

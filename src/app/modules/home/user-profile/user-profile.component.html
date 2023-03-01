@@ -1,6 +1,6 @@
 <!-- <app-layout> -->
 <div class="flex justify-center px-0 md:px-[8%]  w-[100%]">
-    <div class="inner-container flex flex-col items-center md:w-[85%] w-[100%]">
+    <div class="inner-container flex flex-col items-center md:w-[85%] lg:w-[50%] w-[100%]">
 
         <div class="user-details flex mb-[30px] justify-start items-center w-full px-2 md:px-0">
             <div
@@ -13,8 +13,13 @@
                 </ng-template>
             </div>
             <div class="profile-content flex-grow ml-[30px]">
-                <div class="user-settings flex">
+                <div class="user-name flex pb-[10px]">
                     <span class="user-name text-white font-semibold text-xl">{{userName}}</span>
+                </div>
+                <div class="user-post-detail">
+                    <span class="post-num text-white">
+                        <span class="font-bold pr-[5px]">{{postNumber}}</span>posts
+                    </span>
                 </div>
             </div>
         </div>

@@ -11,8 +11,10 @@ export class UserProfileComponent implements OnInit {
 
   posts: any = [];
   userProfilePic: any = null;
+  userId: any = null;
   userName: any = null;
   defaultImage = '/assets/images/default_image.png';
+  postNumber: number = 0;
 
   constructor(private postService: PostService) { }
 
@@ -27,8 +29,9 @@ export class UserProfileComponent implements OnInit {
         result => {
           this.userProfilePic = result.data.profile_img;
           this.userName = result.data.name;
+          this.userId = result.data.id;
           this.posts = result.uploads;
-          console.log(this.userProfilePic,this.posts);
+          this.postNumber = this.posts.length;
         },
         error => {
           console.log(error);

@@ -8,13 +8,14 @@ const routes: Routes = [
   // { path: '', component: HomePageComponent },
   // { path: 'profile', component: UserProfileComponent }
   { 
-    path: '', 
+    path: 'feed', 
     component: LayoutComponent,
     children: [
-      {path: '', component: HomePageComponent},
-      {path: 'profile',component: UserProfileComponent}
+      { path: '', component: HomePageComponent },
+      { path: 'profile',component: UserProfileComponent }
     ]
-  }
+  },
+  { path: '', redirectTo: 'feed', pathMatch: 'full'}
 ];
 
 @NgModule({
