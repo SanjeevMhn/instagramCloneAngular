@@ -9,6 +9,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TokenInterceptorInterceptor } from './interceptor/token-interceptor.interceptor';
 import { HomeModule } from './modules/home/home.module';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GridModule } from '@progress/kendo-angular-grid';
+
+
+
 
 
 @NgModule({
@@ -23,6 +29,9 @@ import { HomeModule } from './modules/home/home.module';
     FormsModule,
     ReactiveFormsModule,
     HomeModule,
+    DateInputsModule,
+    BrowserAnimationsModule,
+    GridModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true }

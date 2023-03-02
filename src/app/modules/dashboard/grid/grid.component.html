@@ -1,0 +1,12 @@
+<!-- <kendo-calender type="classic"></kendo-calender> -->
+<kendo-grid [data]="data" [height]="420">
+    <kendo-grid-column title="Post Image" [width]="140" [class]="{ 'text-center': true, 'padding': 20 }">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="img-container user-img w-[120px] h-[120px] overflow-hidden bg-red">
+                <img src="http://127.0.0.1:8000/{{dataItem.post_img}}" alt="" class="w-full h-full object-cover">
+            </div>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="post_desc" title="Post Description" [width]="230" [class]="{ 'text-center': true }"></kendo-grid-column>
+    <kendo-grid-column field="name" title="User Name" [width]="200" [class]="{ 'text-center': true }"></kendo-grid-column>
+</kendo-grid>
