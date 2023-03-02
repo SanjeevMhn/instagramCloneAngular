@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,12 +32,18 @@ export class AuthService {
     return token;
   }
 
+
   logout(){
     let removeToken = localStorage.removeItem('token');
 
     if(removeToken == null){
       this.router.navigate(['/login']);
     }
+  }
+
+  getPostsAuth(): Observable<any>{
+    const authUserProfileUrl = 'http://127.0.0.1:8000/api/me';
+    return this.http.get(authUserProfileUrl)
   }
 
 }

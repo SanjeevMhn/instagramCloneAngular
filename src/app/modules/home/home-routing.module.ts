@@ -12,7 +12,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: HomePageComponent },
-      { path: 'profile',component: UserProfileComponent }
+      { path: 'profile',component: UserProfileComponent },
+      { path: 'profile/:id',component: UserProfileComponent }
     ]
   },
   { path: '', redirectTo: 'feed', pathMatch: 'full'}

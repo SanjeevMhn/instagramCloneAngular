@@ -6,7 +6,6 @@ import { AuthService } from './auth.service';
 const url = "http://127.0.0.1:8000/api";
 const baseUrl = `${url}/posts`;
 const createPostUrl = `${url}/createPost`;
-const userProfileUrl = `${url}/me`;
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +30,9 @@ export class PostService {
     return this.httpClient.post(createPostUrl,formData);
   }
 
-  getPosts(): Observable<any>{
-    return this.httpClient.get(userProfileUrl)
+
+  getPosts(id:any): Observable<any>{
+    return this.httpClient.get(`${url}/user/${id}`);
   }
 
 }
