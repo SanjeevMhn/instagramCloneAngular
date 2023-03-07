@@ -14,8 +14,9 @@ export class PostService {
 
   constructor(private httpClient: HttpClient,private authService:AuthService) { }
 
-  readAll(): Observable<any> {
-    return this.httpClient.get(baseUrl);
+  readAll(page: number, per_page: number): Observable<any> {
+    const params = { page: page.toString(), per_page: per_page.toString() };
+    return this.httpClient.get(baseUrl, { params });
   }
 
   createPost(formData:any) {

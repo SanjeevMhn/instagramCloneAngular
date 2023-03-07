@@ -11,6 +11,9 @@ import { PostService } from 'src/app/services/post.service';
 export class GridComponent implements OnInit {
 
   public data: GridDataResult = { data: [], total: 0 };
+  perPage = 5;
+  currentPage = 1;
+  skip = 0;
   constructor(private postService: PostService) { }
 
   ngOnInit(): void {
@@ -18,10 +21,10 @@ export class GridComponent implements OnInit {
   }
 
   read(): void {
-    this.postService.readAll()
+    this.postService.readAll(this.currentPage, this.perPage)
       .subscribe(
         (result) => {
-          this.data.data = result.posts;
+          this.data.data = result.posts.data;
         },
         error => {
           console.log(error);

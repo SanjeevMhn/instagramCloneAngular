@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { PostService } from '../../../../services/post.service';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 
@@ -10,6 +11,7 @@ import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 })
 export class LayoutComponent implements OnInit {
   faClose = faClose;
+  faAngleDown = faAngleDown;
   showUploadModal = false;
   imageSrc: any = '';
   imgFile: any = null;

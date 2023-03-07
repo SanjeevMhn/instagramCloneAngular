@@ -1,9 +1,9 @@
 <!-- <kendo-calender type="classic"></kendo-calender> -->
-<kendo-grid [data]="data">
+<kendo-grid [data]="data" [pageable]="true" [pageSize]="5" [skip]="skip">
     <kendo-grid-column title="Post Image" [width]="140" [class]="{ 'text-center': true, 'padding': 20 }">
         <ng-template kendoGridCellTemplate let-dataItem>
             <div class="img-container user-img w-[120px] h-[120px] overflow-hidden bg-red">
-                <img src="http://127.0.0.1:8000/{{dataItem.post_img}}" alt="" class="w-full h-full object-cover">
+                <img src="http://127.0.0.1:8000/{{dataItem.post_img}}" alt="" class="w-full h-full object-contain">
             </div>
         </ng-template>
     </kendo-grid-column>

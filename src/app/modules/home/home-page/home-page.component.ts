@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { PostService } from '../../../services/post.service';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { LayoutComponent } from '../shared/layout/layout.component';
@@ -14,6 +15,9 @@ export class HomePageComponent implements OnInit {
 
   posts: any = [];
   faClose = faClose;
+  faAngleDown = faAngleDown;
+  perPage = 5;
+  currentPage = 1;
 
   constructor(private postService: PostService,private fb: FormBuilder) { }
 
@@ -22,16 +26,21 @@ export class HomePageComponent implements OnInit {
   }
 
   readPosts(): void {
-    this.postService.readAll()
+    this.postService.readAll(this.currentPage, this.perPage)
       .subscribe(
         result => {
-          this.posts = result.posts;
-          // console.log(result.posts)
+          this.posts.push(...result.posts.data);
         },
         error => {
           console.log(error);
         }
       )
+  }
+
+  nextPage(){
+    this.currentPage++;
+    this.readPosts();
+    console.log(this.currentPage, this.posts);
   }
 
 }
