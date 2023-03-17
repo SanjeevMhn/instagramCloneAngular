@@ -15,6 +15,8 @@ export class PostCardComponent implements OnInit {
   faBookmark = faBookmark;
   faFaceSmile = faFaceSmile;
 
+  defaultImage = '/assets/images/default_image.png';
+
   @Input() post: any;
 
   constructor() { }

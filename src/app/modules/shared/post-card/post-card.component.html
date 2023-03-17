@@ -3,7 +3,10 @@
         class="post-card bg-black border border-[rgb(54_54_54)] rounded-md w-[calc(100vw-40px)] md:w-[470px] text-white">
         <div class="post-header p-[10px] flex items-center">
             <div class="img-container user-img w-[32px] h-[32px] rounded-full overflow-hidden bg-red">
-                <img src="" alt="" class="w-full h-full object-cover">
+                <img src="http://127.0.0.1:8000/{{post.profile_img}}" alt="User Image" class="w-full h-full object-cover" *ngIf="post.profile_img; else defaultImg">
+                <ng-template #defaultImg>
+                    <img src="{{defaultImage}}" alt="" class="w-full h-full object-cover">
+                </ng-template>
             </div>
             <a [routerLink]="['/home/feed/profile',post.user_id]" class="user-name font-semibold pl-[10px]">{{post.name}}</a>
             <div class="post-settings ml-auto flex items-center">

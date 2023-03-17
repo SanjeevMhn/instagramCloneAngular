@@ -61,4 +61,15 @@ export class AuthService {
     return this.authCache$;
   }
 
+  uploadProfilePic(formData:any): Observable<any>{
+    // const auth_token = this.getToken();
+    const profilePicUploadUrl = 'http://127.0.0.1:8000/api/uploadProfilePic';
+    const data: any = {};
+    formData.forEach((val: any, key: any) => {
+      data[key] = val;
+    });
+
+    return this.http.post(profilePicUploadUrl, formData);
+  }
+
 }

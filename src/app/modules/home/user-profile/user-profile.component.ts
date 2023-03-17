@@ -3,6 +3,8 @@ import { PostService } from 'src/app/services/post.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 
+  faClose = faClose;
   isLoggedIn: boolean = false;
   posts: any = [];
   userProfilePic: any = null;
@@ -21,16 +24,29 @@ export class UserProfileComponent implements OnInit {
   postNumber: number = 0;
   paramUserId: any = null;
   authId: any = null;
+  showUploadModal = false;
+  imageSrc: any = '';
+  imgFile: any = null;
+  public form!: FormGroup;
 
-  constructor(private postService: PostService, private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private postService: PostService,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder,
+  ) { }
 
   ngOnInit(): void {
     this.paramUserId = this.route.snapshot.paramMap.get('id');
     this.getAuthData();
     this.getPosts();
+    this.form = this.fb.group({
+      profile_img: [null],
+    })
   }
 
-  getAuthData(): void{
+  getAuthData(): void {
     this.authService.getPostsAuth()
       .subscribe(
         result => {
@@ -44,11 +60,11 @@ export class UserProfileComponent implements OnInit {
 
   getPosts(): void {
     console.log(this.authId);
-    if(this.paramUserId == this.authId){
+    if (this.paramUserId == this.authId) {
       this.router.navigate(['/home/feed/profile']);
     }
 
-    if (!this.paramUserId ) {
+    if (!this.paramUserId) {
       this.authService.getPostsAuth()
         .subscribe(
           result => {
@@ -78,5 +94,46 @@ export class UserProfileComponent implements OnInit {
         )
     }
   }
+
+  readUrl(event: Event): void {
+
+    let file = event.target as HTMLInputElement;
+
+
+    if (file.files && file.files[0]) {
+      this.imgFile = file.files[0];
+
+      const reader = new FileReader();
+      reader.onload = e => this.imageSrc = reader.result;
+
+      reader.readAsDataURL(this.imgFile);
+    }
+  }
+
+  submitForm() {
+    console.log(this.imgFile);
+    let formData: any = new FormData();
+    formData.append('profile_img', this.imgFile, this.imgFile.name)
+    this.authService.uploadProfilePic(formData)
+      .subscribe({
+        next: (res) => {
+          location.reload()
+
+          // this.readPosts();
+        }, error: (err) => {
+          console.log(err);
+        }
+      })
+
+  }
+
+  openModal(){
+    this.showUploadModal = true;
+  }
+  
+  closeModal() {
+    this.showUploadModal = false;
+  }
+
 
 }
