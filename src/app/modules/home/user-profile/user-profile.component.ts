@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -23,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   defaultImage = '/assets/images/default_image.png';
   postNumber: number = 0;
   paramUserId: any = null;
-  authId: any = null;
+  authId?:Observable<any>;
   showUploadModal = false;
   imageSrc: any = '';
   imgFile: any = null;
@@ -39,32 +40,37 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.paramUserId = this.route.snapshot.paramMap.get('id');
-    this.getAuthData();
+    // this.getAuthData();
+    this.authService.getLoggedInUserData()
+    .subscribe(
+      (result) => {
+        console.log(result.id);
+        this.authId = result.id;
+      }
+    );
+    
     this.getPosts();
     this.form = this.fb.group({
       profile_img: [null],
     })
   }
 
-  getAuthData(): void {
-    this.authService.getPostsAuth()
-      .subscribe(
-        result => {
-          this.authId = result.data.id;
-        },
-        error => {
-          console.log(error);
-        }
-      )
-  }
+  // getAuthData(): void {
+  //   this.authService.getPostsAuth()
+  //     .subscribe(
+  //       result => {
+  //         this.authId = result.data.id;
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       }
+  //     )
+  // }
 
   getPosts(): void {
     console.log(this.authId);
-    if (this.paramUserId == this.authId) {
+    if (this.paramUserId == this.authId || this.paramUserId == null) {
       this.router.navigate(['/home/feed/profile']);
-    }
-
-    if (!this.paramUserId) {
       this.authService.getPostsAuth()
         .subscribe(
           result => {
@@ -117,8 +123,9 @@ export class UserProfileComponent implements OnInit {
     this.authService.uploadProfilePic(formData)
       .subscribe({
         next: (res) => {
-          location.reload()
-
+          // location.reload()
+          this.showUploadModal = false;
+          this.getPosts();
           // this.readPosts();
         }, error: (err) => {
           console.log(err);
@@ -127,10 +134,12 @@ export class UserProfileComponent implements OnInit {
 
   }
 
-  openModal(){
-    this.showUploadModal = true;
+  openModal() {
+    if(this.authId == this.paramUserId || this.paramUserId == null){
+      this.showUploadModal = true;
+    }
   }
-  
+
   closeModal() {
     this.showUploadModal = false;
   }

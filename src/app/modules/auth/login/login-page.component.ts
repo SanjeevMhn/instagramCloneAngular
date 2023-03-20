@@ -30,6 +30,7 @@ export class LoginPageComponent implements OnInit {
       .subscribe({
         next:(res) => {
           localStorage.setItem('token', res.access_token);
+          this.authService.setLoggedInUserData(res.user);
           this.router.navigate(['/home']);
         },error:(_err)=>{
           this.message = "Invalid email or password";

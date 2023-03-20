@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, shareReplay } from 'rxjs';
+import { BehaviorSubject, Observable, shareReplay } from 'rxjs';
 import { Router } from '@angular/router';
 
 
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private authCache$?: Observable<any>;
+  private loggedInUser = new BehaviorSubject<any>('');
   constructor(private http: HttpClient, private router: Router) { }
 
   login(params: any): Observable<any> {
@@ -28,6 +29,14 @@ export class AuthService {
     }
   }
 
+  setLoggedInUserData(user: any): void {
+    this.loggedInUser.next(user);
+  }
+
+  getLoggedInUserData(): Observable<any> {
+    return this.loggedInUser;
+  }
+
   getToken() {
     const token = localStorage.getItem('token');
     return token;
@@ -36,32 +45,28 @@ export class AuthService {
 
   logout() {
     let removeToken = localStorage.removeItem('token');
-
+    this.loggedInUser.next([]);
     if (removeToken == null) {
       this.router.navigate(['/login']);
     }
   }
 
   getPostsAuth(): Observable<any> {
-    if (!this.authCache$) {
-      const authUserProfileUrl = 'http://127.0.0.1:8000/api/me';
-      this.authCache$ = this.http.get(authUserProfileUrl).pipe(
-        shareReplay(1)
-      )
-    }
-
-    return this.authCache$;
-  }
-
-  updateGetPostsAuth(): Observable<any> {
     const authUserProfileUrl = 'http://127.0.0.1:8000/api/me';
-    this.authCache$ = this.http.get(authUserProfileUrl).pipe(
-      shareReplay(1)
-    )
-    return this.authCache$;
+    return this.http.get(authUserProfileUrl);
+
+
   }
 
-  uploadProfilePic(formData:any): Observable<any>{
+  // updateGetPostsAuth(): Observable<any> {
+  //   const authUserProfileUrl = 'http://127.0.0.1:8000/api/me';
+  //   this.authCache$ = this.http.get(authUserProfileUrl).pipe(
+  //     shareReplay(1)
+  //   )
+  //   return this.authCache$;
+  // }
+
+  uploadProfilePic(formData: any): Observable<any> {
     // const auth_token = this.getToken();
     const profilePicUploadUrl = 'http://127.0.0.1:8000/api/uploadProfilePic';
     const data: any = {};
