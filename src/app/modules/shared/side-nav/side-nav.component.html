@@ -63,8 +63,13 @@
         </li>
         <li class="nav-item w-full">
             <a [routerLink]="['/home/feed/profile']" class="nav-link p-[12px] w-[56px] h-[56px] xl:w-[unset] xl:h-[unset] flex items-center justify-center xl:justify-start hover:bg-[rgb(18_18_18)] rounded-[100vh]">
-                <span class="img-container w-[24px] h-[24px] rounded-full bg-slate-400 inline-block"></span>
-                <span class="label-text pl-[16px] hidden xl:inline-block">Profile</span>
+                <span class="img-container w-[24px] h-[24px] rounded-full bg-slate-400 inline-block overflow-hidden">
+                    <img src="http://127.0.0.1:8000/{{authUserImg}}" class="w-full h-full object-cover" alt="" *ngIf="authUserImg; else default">
+                    <ng-template #default>
+                        <img src="{{defaultImg}}" alt="" class="w-full h-full object-cover">
+                    </ng-template>
+                </span>
+                <span class="label-text pl-[16px] hidden xl:inline-block">{{authUserName}}</span>
             </a>
         </li>
         <li class="nav-item w-full relative hidden md:block">

@@ -52,8 +52,8 @@ export class LayoutComponent implements OnInit {
     this.postService.createPost(formData)
       .subscribe({
         next: (res) => {
-          location.reload()
-          
+          // location.reload()
+          this.showUploadModal = false;
           // this.readPosts();
         }, error: (err) => {
           console.log(err);

@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { faHome, faMagnifyingGlass, faCompass, faClapperboard, faComment, faHeart, faSquarePlus, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from '../../../services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-side-nav',
@@ -20,12 +21,20 @@ export class SideNavComponent implements OnInit {
   faSquarePlus = faSquarePlus;
   faBars = faBars;
   faInstagram = faInstagram;
+  authUserImg?: Observable<any>;
+  authUserName?: Observable<any>;
+  defaultImg = "/assets/images/default_image.png";
 
   showOptions = false;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.getLoggedInUserData()
+    .subscribe(result => {
+      this.authUserImg = result.profile_img;
+      this.authUserName = result.name;
+    })
   }
 
   @Input() showUploadModal: any;
