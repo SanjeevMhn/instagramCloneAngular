@@ -50,6 +50,11 @@ export class UserProfileComponent implements OnInit {
       profile_img: [null],
     })
   }
+
+  postClick(){
+    console.log('Hello World');
+  }
+
   getPosts(id: any): void {
     this.postService.getPosts(id)
       .subscribe(
