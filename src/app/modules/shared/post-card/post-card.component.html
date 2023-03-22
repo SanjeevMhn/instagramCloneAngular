@@ -10,7 +10,7 @@
             </div>
             <a [routerLink]="['/home/feed/profile',post.user_id]" class="user-name font-semibold pl-[10px]">{{post.name}}</a>
             <div class="post-settings ml-auto flex items-center">
-                <button class="follow-btn text-white bg-[#242424] p-[5px_12px] rounded-md">Follow</button>
+                <button class="follow-btn text-white bg-[#242424] p-[5px_12px] rounded-md" *ngIf="post.user_id !== authUser.id">Follow</button>
                 <div class="icon-container px-[10px]">
                     <fa-icon [icon]="faEllipsis" class="text-xl"></fa-icon>
                 </div>

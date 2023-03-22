@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private authCache$?: Observable<any>;
-  private loggedInUser = new BehaviorSubject<any>('');
+  private loggedInUser = new BehaviorSubject<any>(null);
   constructor(private http: HttpClient, private router: Router) { }
 
   login(params: any): Observable<any> {
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   getLoggedInUserData(): Observable<any> {
-    return this.loggedInUser;
+    return this.loggedInUser.value;
   }
 
   getToken() {
@@ -51,12 +51,12 @@ export class AuthService {
     }
   }
 
-  getPostsAuth(): Observable<any> {
-    const authUserProfileUrl = 'http://127.0.0.1:8000/api/me';
-    return this.http.get(authUserProfileUrl);
+  // getPostsAuth(): Observable<any> {
+  //   const authUserProfileUrl = 'http://127.0.0.1:8000/api/me';
+  //   return this.http.get(authUserProfileUrl);
 
 
-  }
+  // }
 
   // updateGetPostsAuth(): Observable<any> {
   //   const authUserProfileUrl = 'http://127.0.0.1:8000/api/me';

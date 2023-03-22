@@ -18,6 +18,7 @@ export class PostCardComponent implements OnInit {
   defaultImage = '/assets/images/default_image.png';
 
   @Input() post: any;
+  @Input() authUser: any;
 
   constructor() { }
 

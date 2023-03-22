@@ -1,7 +1,7 @@
 <!-- <app-side-nav-resp class="md:hidden"></app-side-nav-resp> -->
 <!-- <app-layout> -->
 <div class="feed-container">
-    <app-post-card *ngFor="let post of posts" [post]="post"></app-post-card>
+    <app-post-card *ngFor="let post of posts" [post]="post" [authUser]="authUser"></app-post-card>
     <button type="button"
         class="more icon-container w-[35px] h-[35px] mb-[10px] rounded-full text-white bg-slate-400 flex justify-center items-center mx-auto" (click)="nextPage()">
         <fa-icon [icon]="faAngleDown" class="text-white text-xl" ></fa-icon>

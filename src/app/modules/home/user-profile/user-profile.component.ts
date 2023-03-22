@@ -16,19 +16,16 @@ import { Observable } from 'rxjs';
 export class UserProfileComponent implements OnInit {
 
   faClose = faClose;
-  isLoggedIn: boolean = false;
   posts: any = [];
-  userProfilePic: any = null;
-  userId: any = null;
-  userName: any = null;
   defaultImage = '/assets/images/default_image.png';
   postNumber: number = 0;
   paramUserId: any = null;
-  authId?:Observable<any>;
   showUploadModal = false;
-  imageSrc: any = '';
-  imgFile: any = null;
-  public form!: FormGroup;
+  profileImageSrc: any = '';
+  profileImgFile: any = null;
+  public authUser: any = {};
+  public user: any = {};
+  public profileForm!: FormGroup;
 
   constructor(
     private postService: PostService,
@@ -41,64 +38,30 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.paramUserId = this.route.snapshot.paramMap.get('id');
     // this.getAuthData();
-    this.authService.getLoggedInUserData()
-    .subscribe(
-      (result) => {
-        console.log(result.id);
-        this.authId = result.id;
-      }
-    );
-    
-    this.getPosts();
-    this.form = this.fb.group({
+    this.authUser = this.authService.getLoggedInUserData()
+    if (this.paramUserId == this.authUser.id || this.paramUserId == null) {
+      this.user = this.authUser;
+      this.router.navigate(['/home/feed/profile']);
+      this.getPosts(this.user.id);
+    }else{
+      this.getPosts(this.paramUserId);
+    }
+    this.profileForm = this.fb.group({
       profile_img: [null],
     })
   }
-
-  // getAuthData(): void {
-  //   this.authService.getPostsAuth()
-  //     .subscribe(
-  //       result => {
-  //         this.authId = result.data.id;
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       }
-  //     )
-  // }
-
-  getPosts(): void {
-    console.log(this.authId);
-    if (this.paramUserId == this.authId || this.paramUserId == null) {
-      this.router.navigate(['/home/feed/profile']);
-      this.authService.getPostsAuth()
-        .subscribe(
-          result => {
-            this.userProfilePic = result.data.profile_img;
-            this.userName = result.data.name;
-            this.userId = result.data.id;
-            this.posts = result.uploads;
-            this.postNumber = this.posts.length;
-          },
-          error => {
-            console.log(error);
-          }
-        )
-    } else {
-      this.postService.getPosts(this.paramUserId)
-        .subscribe(
-          result => {
-            this.userProfilePic = result.user.profile_img;
-            this.userName = result.user.name;
-            this.userId = result.user.id;
-            this.posts = result.posts;
-            this.postNumber = this.posts.length;
-          },
-          error => {
-            console.log(error);
-          }
-        )
-    }
+  getPosts(id: any): void {
+    this.postService.getPosts(id)
+      .subscribe(
+        result => {
+          this.user = null ?? result.user;
+          this.posts = result.posts;
+          this.postNumber = this.posts.length;
+        },
+        error => {
+          console.log(error);
+        }
+      )
   }
 
   readUrl(event: Event): void {
@@ -107,25 +70,25 @@ export class UserProfileComponent implements OnInit {
 
 
     if (file.files && file.files[0]) {
-      this.imgFile = file.files[0];
+      this.profileImgFile = file.files[0];
 
       const reader = new FileReader();
-      reader.onload = e => this.imageSrc = reader.result;
+      reader.onload = e => this.profileImageSrc = reader.result;
 
-      reader.readAsDataURL(this.imgFile);
+      reader.readAsDataURL(this.profileImgFile);
     }
   }
 
   submitForm() {
-    console.log(this.imgFile);
+    console.log(this.profileImgFile);
     let formData: any = new FormData();
-    formData.append('profile_img', this.imgFile, this.imgFile.name)
+    formData.append('profile_img', this.profileImgFile, this.profileImgFile.name)
     this.authService.uploadProfilePic(formData)
       .subscribe({
         next: (res) => {
           // location.reload()
           this.showUploadModal = false;
-          this.getPosts();
+          this.getPosts(this.user.id);
           // this.readPosts();
         }, error: (err) => {
           console.log(err);
@@ -135,7 +98,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   openModal() {
-    if(this.authId == this.paramUserId || this.paramUserId == null){
+    if (this.authUser.id == this.paramUserId || this.paramUserId == null) {
       this.showUploadModal = true;
     }
   }

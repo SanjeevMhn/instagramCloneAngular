@@ -4,6 +4,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { PostService } from '../../../services/post.service';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { LayoutComponent } from '../shared/layout/layout.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -18,10 +19,12 @@ export class HomePageComponent implements OnInit {
   faAngleDown = faAngleDown;
   perPage = 5;
   currentPage = 1;
+  public authUser:any;
 
-  constructor(private postService: PostService,private fb: FormBuilder) { }
+  constructor(private postService: PostService,private fb: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authUser = this.authService.getLoggedInUserData();
     this.readPosts();
   }
 

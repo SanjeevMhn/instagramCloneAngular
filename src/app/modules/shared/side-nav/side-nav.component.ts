@@ -26,15 +26,13 @@ export class SideNavComponent implements OnInit {
   defaultImg = "/assets/images/default_image.png";
 
   showOptions = false;
+  public user: any;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.getLoggedInUserData()
-    .subscribe(result => {
-      this.authUserImg = result.profile_img;
-      this.authUserName = result.name;
-    })
+    this.user = this.authService.getLoggedInUserData()
+    console.log(this.user);
   }
 
   @Input() showUploadModal: any;

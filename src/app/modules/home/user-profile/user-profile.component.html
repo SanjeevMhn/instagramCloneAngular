@@ -5,8 +5,8 @@
         <div class="user-details flex pb-[30px] justify-start items-center w-full px-2 md:px-0 bg-[#121212]">
             <div
                 class="profile-img flex-shrink rounded-full overflow-hidden w-[70px] h-[70px] md:w-[150px] md:h-[150px] flex items-center justify-center" (click)="openModal()">
-                <img class="w-full h-full object-cover" src="http://127.0.0.1:8000/{{userProfilePic}}" alt=""
-                    *ngIf="userProfilePic; else defaultImg">
+                <img class="w-full h-full object-cover" src="http://127.0.0.1:8000/{{user.profile_img}}" alt=""
+                    *ngIf="user.profile_img; else defaultImg">
                 <!-- <img src="{{defaultImage}}" alt=""> -->
                 <ng-template #defaultImg>
                     <img class="w-full h-full object-cover" src="{{defaultImage}}" alt="">
@@ -14,7 +14,7 @@
             </div>
             <div class="profile-content flex-grow ml-[30px]">
                 <div class="user-name flex pb-[10px]">
-                    <span class="user-name text-white font-semibold text-xl">{{userName}}</span>
+                    <span class="user-name text-white font-semibold text-xl">{{user.name}}</span>
                 </div>
                 <div class="user-post-detail">
                     <span class="post-num text-white">
@@ -38,26 +38,26 @@
         <button class="close-btn mb-auto flex w-full justify-end bg-transparent p-[20px_30px]" (click)="closeModal()">
             <fa-icon [icon]="faClose" class="text-white text-2xl"></fa-icon>
         </button>
-        <form [formGroup]="form"
+        <form [formGroup]="profileForm"
             class="mb-auto add-media-container bg-[rgb(18_18_18)] max-w-[550px] w-[90%] min-h-[450px] rounded-xl flex flex-col items-center"
             entype="multipart/form-data" type="post" (submit)="submitForm()">
             <div class="modal-header border border-gray-400 border-t-0 border-x-0 p-[20px] text-white text-center w-full text-xl">
                 Upload Profile Picture
             </div>
             <div class="modal-body w-full flex-grow flex flex-col items-center justify-center pt-[10px]">
-                <div class="form-group mb-4 py-4" [ngClass]="imageSrc ? 'hidden' : 'block'">
+                <div class="form-group mb-4 py-4" [ngClass]="profileImageSrc ? 'hidden' : 'block'">
                     <label for="media" class="upload-file p-[5px_10px] text-white rounded-md bg-blue-500 text-center cursor-pointer text-[18px]">
                         Select from device
                     </label>
                     <input formControlName="profile_img" type="file" name="media" id="media" class="hidden" placeholder="Upload File" (change)="readUrl($event)">
                 </div>
-                <div class="form-group mb-4 flex flex-col md:flex-row gap-5" *ngIf="imageSrc">
+                <div class="form-group mb-4 flex flex-col md:flex-row gap-5" *ngIf="profileImageSrc">
                     <div class="img-container w-full max-h-[350px] mb-3">
-                        <img [src]="imageSrc || defaultImage" alt="Uploaded-image" class="w-full h-full object-contain">
+                        <img [src]="profileImageSrc || defaultImage" alt="Uploaded-image" class="w-full h-full object-contain">
                     </div>
                     <!-- <textarea formControlName="post_desc" name="caption" id="caption" placeholder="Write a caption..." class="bg-[rgb(18_18_18)] text-white w-full p-2"></textarea> -->
                 </div>
-                <div class="form-group mb-4 flex py-4" *ngIf="imageSrc">
+                <div class="form-group mb-4 flex py-4" *ngIf="profileImageSrc">
                     <button class="p-[5px_10px] text-white rounded-md bg-blue-500 text-center cursor-pointer text-[18px]" type="submit">Upload</button>
                 </div>
             </div>
