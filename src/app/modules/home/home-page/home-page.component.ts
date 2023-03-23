@@ -25,6 +25,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.authUser = this.authService.getLoggedInUserData();
+    console.log(this.authUser);
     this.readPosts();
   }
 

@@ -3,6 +3,7 @@ import { faHome, faMagnifyingGlass, faCompass, faClapperboard, faComment, faHear
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -28,7 +29,13 @@ export class SideNavComponent implements OnInit {
   showOptions = false;
   public user: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { 
+    this.router.events.subscribe(event => {
+      if(event instanceof NavigationStart){
+        this.user = this.authService.getLoggedInUserData()
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.user = this.authService.getLoggedInUserData()

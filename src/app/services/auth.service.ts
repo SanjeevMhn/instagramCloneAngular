@@ -33,13 +33,34 @@ export class AuthService {
     this.loggedInUser.next(user);
   }
 
-  getLoggedInUserData(): Observable<any> {
-    return this.loggedInUser.value;
+  getLoggedInUserData(){
+    if (this.loggedInUser.getValue() !== null) {
+      console.log(this.loggedInUser.getValue());
+      return this.loggedInUser.getValue();
+    } else {
+      if(this.isLoggedIn()){
+        this.getAuthUserData()
+        .subscribe(
+          result => {
+            this.setLoggedInUserData(result.user);
+            return this.loggedInUser.value;
+          },
+          error => {
+            console.log(error);
+          }
+        )
+      }
+    }
   }
 
   getToken() {
     const token = localStorage.getItem('token');
     return token;
+  }
+
+  getAuthUserData():Observable<any> {
+    const authUserProfileUrl = 'http://127.0.0.1:8000/api/me';
+    return this.http.get(authUserProfileUrl);
   }
 
 

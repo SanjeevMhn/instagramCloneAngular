@@ -38,7 +38,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.paramUserId = this.route.snapshot.paramMap.get('id');
     // this.getAuthData();
-    this.authUser = this.authService.getLoggedInUserData()
+    this.authUser = this.authService.getLoggedInUserData();
     if (this.paramUserId == this.authUser.id || this.paramUserId == null) {
       this.user = this.authUser;
       this.router.navigate(['/home/feed/profile']);
