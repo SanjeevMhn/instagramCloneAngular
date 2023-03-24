@@ -3,6 +3,9 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { PostService } from '../../../../services/post.service';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -17,14 +20,20 @@ export class LayoutComponent implements OnInit {
   imgFile: any = null;
   defaultImage = '/assets/images/default_image.png';
   public form!: FormGroup;
+  subscription?: Subscription;
+  public user: any;
 
-  constructor(private postService: PostService, private fb: FormBuilder) { }
+
+  constructor(private postService: PostService,private fb: FormBuilder,private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       post_img: [null],
       post_desc: [null]
     })
+
+    this.user = this.authService.getLoggedInUserData();
+
   }
 
   readUrl(event: Event): void {

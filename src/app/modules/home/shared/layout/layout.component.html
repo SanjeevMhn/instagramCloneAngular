@@ -1,7 +1,7 @@
 <div class="content-wrapper bg-[#121212] relative h-screen">
   <app-topnav class="md:hidden"></app-topnav>
   <app-side-nav (toggleUploadModal)="getUploadModalState($event)"
-    [showUploadModal]="showUploadModal"></app-side-nav>
+    [showUploadModal]="showUploadModal" [user]="user" ></app-side-nav>
   <!-- <app-side-nav-resp class="md:hidden"></app-side-nav-resp> -->
   <div class="outer-container md:ml-[80px] lg:ml-[250px] flex flex-col items-center overflow-y-auto w-full md:w-[calc(100%-80px)] lg:w-[calc(100%-250px)] h-[calc(100vh-77px)] md:h-screen pt-[30px] pb-[100px] lg:pb-[50px] bg-[#121212]">
       <router-outlet></router-outlet>

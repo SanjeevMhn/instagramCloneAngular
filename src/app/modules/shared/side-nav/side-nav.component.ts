@@ -3,7 +3,6 @@ import { faHome, faMagnifyingGlass, faCompass, faClapperboard, faComment, faHear
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs';
-import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -22,25 +21,15 @@ export class SideNavComponent implements OnInit {
   faSquarePlus = faSquarePlus;
   faBars = faBars;
   faInstagram = faInstagram;
-  authUserImg?: Observable<any>;
-  authUserName?: Observable<any>;
   defaultImg = "/assets/images/default_image.png";
 
   showOptions = false;
-  public user: any;
 
-  constructor(private authService: AuthService, private router: Router) { 
-    this.router.events.subscribe(event => {
-      if(event instanceof NavigationStart){
-        this.user = this.authService.getLoggedInUserData()
-      }
-    })
-  }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.user = this.authService.getLoggedInUserData()
-    console.log(this.user);
-  }
+  ngOnInit(): void { }
+
+  @Input() user: any;
 
   @Input() showUploadModal: any;
 

@@ -12,7 +12,13 @@ export class AuthService {
 
   private authCache$?: Observable<any>;
   private loggedInUser = new BehaviorSubject<any>(null);
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { 
+    const savedAuthUser = localStorage.getItem('user');
+    if(savedAuthUser){
+      this.loggedInUser.next(JSON.parse(savedAuthUser));
+    }
+
+  }
 
   login(params: any): Observable<any> {
 
@@ -30,27 +36,24 @@ export class AuthService {
   }
 
   setLoggedInUserData(user: any): void {
+    localStorage.setItem('user',JSON.stringify(user));
     this.loggedInUser.next(user);
   }
 
-  getLoggedInUserData(){
-    if (this.loggedInUser.getValue() !== null) {
-      console.log(this.loggedInUser.getValue());
-      return this.loggedInUser.getValue();
-    } else {
-      if(this.isLoggedIn()){
-        this.getAuthUserData()
-        .subscribe(
-          result => {
-            this.setLoggedInUserData(result.user);
-            return this.loggedInUser.value;
-          },
-          error => {
-            console.log(error);
-          }
-        )
-      }
-    }
+  getLoggedInUserData() {
+    
+    return this.loggedInUser.getValue();
+
+    // this.getAuthUserData().subscribe(
+    //   result => {
+    //     this.setLoggedInUserData(result.user);
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   }
+    // )
+   
+
   }
 
   getToken() {
@@ -58,7 +61,7 @@ export class AuthService {
     return token;
   }
 
-  getAuthUserData():Observable<any> {
+  getAuthUserData(): Observable<any> {
     const authUserProfileUrl = 'http://127.0.0.1:8000/api/me';
     return this.http.get(authUserProfileUrl);
   }
@@ -66,6 +69,7 @@ export class AuthService {
 
   logout() {
     let removeToken = localStorage.removeItem('token');
+    let removeUser = localStorage.removeItem('user');
     this.loggedInUser.next([]);
     if (removeToken == null) {
       this.router.navigate(['/login']);
