@@ -21,15 +21,8 @@ export class GridComponent implements OnInit {
   }
 
   read(): void {
-    this.postService.readAll(this.currentPage, this.perPage)
-      .subscribe(
-        (result) => {
-          this.data.data = result.posts.data;
-        },
-        error => {
-          console.log(error);
-        }
-      )
+    // this.data.data = this.postService.readAll(this.currentPage, this.perPage);
+      
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { faBookmark, faComment, faEllipsis,faFaceSmile,faHeart, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -16,9 +16,18 @@ export class PostCardComponent implements OnInit {
   faFaceSmile = faFaceSmile;
 
   defaultImage = '/assets/images/default_image.png';
+  private value?:any;
 
-  @Input() post: any;
   @Input() authUser: any;
+  @Input() 
+  set post(val:any){
+    this.value = { ...val };
+  }
+
+  get post(){
+    return this.value
+  }
+
 
   constructor() { }
 

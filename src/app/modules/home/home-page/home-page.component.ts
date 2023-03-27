@@ -30,20 +30,13 @@ export class HomePageComponent implements OnInit {
   }
 
   readPosts(): void {
-    this.postService.readAll(this.currentPage, this.perPage)
-      .subscribe(
-        result => {
-          this.posts.push(...result.posts.data);
-        },
-        error => {
-          console.log(error);
-        }
-      )
+    this.posts = <[]>this.postService.readAll(this.currentPage, this.perPage);
+    console.log(this.posts);
   }
 
   nextPage(){
     this.currentPage++;
-    this.readPosts();
+    this.posts = this.postService.addPosts(this.currentPage, this.perPage);
     console.log(this.currentPage, this.posts);
   }
 

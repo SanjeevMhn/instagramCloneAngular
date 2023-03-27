@@ -70,6 +70,7 @@ export class AuthService {
   logout() {
     let removeToken = localStorage.removeItem('token');
     let removeUser = localStorage.removeItem('user');
+    let removerPosts = localStorage.removeItem('posts');
     this.loggedInUser.next([]);
     if (removeToken == null) {
       this.router.navigate(['/login']);
