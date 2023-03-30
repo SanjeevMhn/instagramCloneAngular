@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { PostService } from '../../../../services/post.service';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { HomepageService } from 'src/app/services/homepage.service';
 
 @Component({
   selector: 'app-layout',
@@ -24,7 +25,8 @@ export class LayoutComponent implements OnInit {
   public user: any;
 
 
-  constructor(private postService: PostService,private fb: FormBuilder,private router: Router, private authService: AuthService) { }
+
+  constructor(private postService: PostService,private fb: FormBuilder,private router: Router, private authService: AuthService, private homepageService: HomepageService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -35,6 +37,7 @@ export class LayoutComponent implements OnInit {
     this.user = this.authService.getLoggedInUserData();
 
   }
+
 
   readUrl(event: Event): void {
 
@@ -63,6 +66,9 @@ export class LayoutComponent implements OnInit {
         next: (res) => {
           // location.reload()
           this.showUploadModal = false;
+          this.homepageService.callReloadOnNewPosts();
+          this.imgFile = null;
+          this.imageSrc = '';
           // this.readPosts();
         }, error: (err) => {
           console.log(err);
@@ -78,4 +84,5 @@ export class LayoutComponent implements OnInit {
   closeModal() {
     this.showUploadModal = false;
   }
+
 }

@@ -5,6 +5,7 @@ import { PostService } from '../../../services/post.service';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
 import { LayoutComponent } from '../shared/layout/layout.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { HomepageService } from 'src/app/services/homepage.service';
 
 @Component({
   selector: 'app-home-page',
@@ -21,23 +22,53 @@ export class HomePageComponent implements OnInit {
   currentPage = 1;
   public authUser:any;
 
-  constructor(private postService: PostService,private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private postService: PostService,private fb: FormBuilder, private authService: AuthService, private homepageService: HomepageService) { }
 
   ngOnInit(): void {
+    this.homepageService.homepageReloadOnNewPostCalled$.subscribe(() => {
+      this.reloadForNewPosts();
+    })
     this.authUser = this.authService.getLoggedInUserData();
     console.log(this.authUser);
     this.readPosts();
   }
 
   readPosts(): void {
-    this.postService.readAll(this.currentPage, this.perPage);
+    this.postService.readAll(this.currentPage, this.perPage).subscribe({
+      next: (res) => {
+        this.posts = res
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
     console.log(this.posts);
   } 
 
   nextPage(){
     this.currentPage++;
     this.posts = [];
-    this.posts = this.postService.addPosts(this.currentPage, this.perPage);
+    this.postService.addPosts(this.currentPage, this.perPage).subscribe({
+      next: (res) => {
+        this.posts = res
+      },
+      error: (err) => {
+        console.error(err)
+      }
+    });
+    console.log(this.currentPage, this.posts);
+  }
+
+  reloadForNewPosts(){
+    this.postService.reloadForNewPosts(this.currentPage, this.perPage).subscribe({
+      next: (res) => {
+        this.posts = res
+      },
+      error: (err) => {
+        console.error(err)
+      }
+    })
+
     console.log(this.currentPage, this.posts);
   }
 
