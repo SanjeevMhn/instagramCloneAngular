@@ -23,7 +23,7 @@ export class PostService {
   }
 
 
-  readAll(page: number, per_page: number) {
+  readAll(page: number, per_page: number): BehaviorSubject<any[]> {
     const postCachedData = localStorage.getItem('posts');
     if (postCachedData) {
       this.postCache.next([...JSON.parse(postCachedData)]);
@@ -43,11 +43,28 @@ export class PostService {
       })
     }
 
-    return this.postCache.getValue();
+    return this.postCache;
 
   }
 
-  addPosts(page: number, per_page: number) {
+  reloadForNewPosts(page: number, per_page: number):BehaviorSubject<any[]> {
+    const params = { page: page.toString(), per_page: per_page.toString() }
+    this.httpClient.get(baseUrl, { params }).subscribe({
+      next: (res: any) => {
+        localStorage.setItem('posts', JSON.stringify(res.posts.data));
+        this.postCache.next([...res.posts.data]);
+        console.log(this.postCache.getValue());
+        // return this.postCache.getValue();
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
+
+    return this.postCache;
+  }
+
+  addPosts(page: number, per_page: number): BehaviorSubject<any[]> {
     const params = {
       page: page.toString(),
       per_page: per_page.toString()
@@ -71,7 +88,7 @@ export class PostService {
       }
     })
 
-    return this.postCache.getValue();
+    return this.postCache;
 
   }
 
